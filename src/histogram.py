@@ -1,3 +1,6 @@
+# Histogram visualization for feature analysis
+# Shows distribution of "Care of Magical Creatures" across Hogwarts Houses
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt

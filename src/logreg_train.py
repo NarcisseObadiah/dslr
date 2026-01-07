@@ -1,3 +1,7 @@
+# Logistic Regression Training Script
+# Trains 4 binary classifiers (one-vs-all) for Hogwarts House classification
+# Saves trained weights to models/model.npy for later use in predictions
+
 import sys
 import numpy as np
 import pandas as pd
@@ -7,9 +11,11 @@ from utils.data_scaling import normalize
 from utils.label_encoding import encode_one_vs_all
 
 def sigmoid(z):
+    """Sigmoid activation function for logistic regression"""
     return 1 / (1 + np.exp(-z))
 
 def train(features, labels, learning_rate=0.1, epochs=3000):
+    """Train logistic regression model using gradient descent"""
     samples, features_count = features.shape
     weights = np.zeros(features_count)
 

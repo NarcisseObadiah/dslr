@@ -1,3 +1,6 @@
+# Statistical analysis tool for dataset exploration
+# Calculates and displays statistical metrics for all numeric columns
+
 import sys
 import pandas as pd
 from utils.statistics import *

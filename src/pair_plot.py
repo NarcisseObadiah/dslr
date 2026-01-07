@@ -1,3 +1,6 @@
+# Multi-variable pairplot to visualize relationships between features
+# Shows correlation patterns between Astronomy, Charms, Potions, and Flying
+
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt

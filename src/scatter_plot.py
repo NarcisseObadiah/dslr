@@ -1,4 +1,5 @@
-
+# Scatter plot analysis between two features
+# Visualizes relationship between Astronomy and Defense Against the Dark Arts by House
 
 import pandas as pd
 import seaborn as sns

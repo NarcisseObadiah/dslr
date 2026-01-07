@@ -1,3 +1,7 @@
+# Logistic Regression Prediction Script
+# Loads trained model and makes predictions on test data
+# Outputs predictions to output/houses.csv
+
 import sys
 import numpy as np
 import pandas as pd
@@ -6,6 +10,7 @@ from utils.data_cleaning import prepare_features
 from utils.data_scaling import normalize
 
 def sigmoid(z):
+    """Sigmoid activation function for logistic regression"""
     return 1 / (1 + np.exp(-z))
 
 def main():
