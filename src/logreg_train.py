@@ -6,6 +6,10 @@ import sys
 import numpy as np
 import pandas as pd
 
+# Ensure project root is on sys.path when running directly
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
 from utils.data_cleaning import prepare_features
 from utils.data_scaling import normalize
 from utils.label_encoding import encode_one_vs_all

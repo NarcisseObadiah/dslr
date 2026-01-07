@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "/home/mobadiah/Desktop/project/dslr/.venv/bin/python",
+  "python.analysis.extraPaths": ["."],
+  "python.testing.pytestEnabled": false,
+  "python.analysis.typeCheckingMode": "basic"
+}

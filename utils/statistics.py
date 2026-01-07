@@ -20,6 +20,7 @@ def std(values):
         return float("nan")
     avg = mean(valid)
     variance = sum((v - avg) ** 2 for v in valid) / (len(valid) - 1)
+    return math.sqrt(variance)
 def min_value(values):
     """Find minimum of non-NaN values"""
     valid = [v for v in values if v == v]
@@ -31,9 +32,7 @@ def max_value(values):
     return max(valid) if valid else float("nan")
 
 def percentile(values, percent):
-    """Calculate percentile of non-NaN values"""lse float("nan")
-
-def percentile(values, percent):
+    """Calculate percentile of non-NaN values"""
     valid = sorted([v for v in values if v == v])
     if not valid:
         return float("nan")
