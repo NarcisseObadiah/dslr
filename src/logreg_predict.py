@@ -13,7 +13,6 @@ from utils.data_cleaning import prepare_features
 from utils.data_scaling import normalize
 
 def sigmoid(z):
-    """Sigmoid activation function for logistic regression"""
     return 1 / (1 + np.exp(-z))
 
 def main():

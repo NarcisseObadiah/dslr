@@ -21,6 +21,7 @@ def std(values):
     avg = mean(valid)
     variance = sum((v - avg) ** 2 for v in valid) / (len(valid) - 1)
     return math.sqrt(variance)
+
 def min_value(values):
     """Find minimum of non-NaN values"""
     valid = [v for v in values if v == v]
