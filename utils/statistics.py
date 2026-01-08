@@ -5,37 +5,86 @@
 import math
 
 def count(values):
-    """Count non-NaN values"""
-    return len([v for v in values if v == v])
+
+    valid_values = []
+
+    for value in values:
+        if value == value:  # Check for NaN
+            valid_values.append(value)
+    return len(valid_values)
+
 
 def mean(values):
-    """Calculate mean of non-NaN values"""
-    valid = [v for v in values if v == v]
-    return sum(valid) / len(valid) if valid else float("nan")
+    valid_values = []
+    for value in values:
+        if value == value:  # Check for NaN
+            valid_values.append(value)
+    if len(valid_values) == 0:
+        return float("nan")
+    total_sum = 0
+    for value in valid_values:
+        total_sum += value
+    return total_sum / len(valid_values)
+
+
 
 def std(values):
     """Calculate standard deviation of non-NaN values"""
-    valid = [v for v in values if v == v]
-    if len(valid) < 2:
+    valid_values = []
+    for value in values:
+        if value == value:
+            valid_values.append(value)
+    if len (valid_values) < 2:
         return float("nan")
-    avg = mean(valid)
-    variance = sum((v - avg) ** 2 for v in valid) / (len(valid) - 1)
+
+    average = mean(valid_values)
+    
+    squared_differences = 0
+    for value in valid_values:
+        squared_differences += (value - average) ** 2
+    variance = squared_differences / (len(valid_values) - 1)
     return math.sqrt(variance)
 
 def min_value(values):
-    """Find minimum of non-NaN values"""
-    valid = [v for v in values if v == v]
-    return min(valid) if valid else float("nan")
+    valid_values = []
+    for value in values:
+        if value == value:
+            valid_values.append(value)
+    if len(valid_values) == 0:
+        return float("nan")
+    
+    current_min = valid_values[0]
+    for value in valid_values:
+        if value < current_min:
+            current_min = value
+    return current_min
+
+
 
 def max_value(values):
-    """Find maximum of non-NaN values"""
-    valid = [v for v in values if v == v]
-    return max(valid) if valid else float("nan")
+    valid_values = []
+    for value in values:
+        if value == value:
+            valid_values.append(value)
+    if len(valid_values) == 0:
+        return float("nan")
+    
+    current_max = valid_values[0]
+    for value in valid_values:
+        if value > current_max:
+            current_max = value
+    return current_max
 
 def percentile(values, percent):
     """Calculate percentile of non-NaN values"""
-    valid = sorted([v for v in values if v == v])
-    if not valid:
+    valid_values = []
+
+    for value in values:
+        if value == value:
+            valid_values.append(value)
+    if len(valid_values) == 0:
         return float("nan")
-    index = int((percent / 100) * (len(valid) - 1))
-    return valid[index]
+    
+    valid_values.sort()
+    position = int((percent / 100) * (len(valid_values) - 1))
+    return valid_values[position]
