@@ -14,14 +14,15 @@ from utils.data_cleaning import prepare_features
 from utils.data_scaling import normalize
 from utils.label_encoding import encode_one_vs_all
 
-def sigmoid(z):
-    """Sigmoid activation function for logistic regression"""
-    return 1 / (1 + np.exp(-z))
 
+ """Sigmoid activation function for logistic regression"""
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+ 
 def train(features, labels, learning_rate=0.1, epochs=3000):
     """Train logistic regression model using gradient descent"""
     samples, features_count = features.shape
-    weights = np.zeros(features_count)
+    weights = np.zeros(features_count)          
 
     for _ in range(epochs):
         prediction = sigmoid(features @ weights)
@@ -30,33 +31,43 @@ def train(features, labels, learning_rate=0.1, epochs=3000):
 
     return weights
 
+
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python logreg_train.py dataset_train.csv")
+        print("Usage: python logreg_train.py <dataset_file>")
         return
+    try:
+        df = pd.read_csv(sys.argv[1])
+    except Exception as e:
+        print(f"Error reading dataset: {e}")
+        return
+    try:
+        df = prepare_features(df, include_target=True)
 
-    df = pd.read_csv(sys.argv[1])
-    df = prepare_features(df, include_target=True)
+        X = df.drop(columns=["Hogwarts House"]).values
+        y = df["Hogwarts House"].values
 
-    X = df.drop(columns=["Hogwarts House"]).values
-    y = df["Hogwarts House"].values
+        X, mean, std = normalize(X)
+        X = np.hstack((np.ones((X.shape[0], 1)), X))
 
-    X, mean, std = normalize(X)
-    X = np.hstack((np.ones((X.shape[0], 1)), X))
+        encoded, houses = encode_one_vs_all(y)
+        model_weights = {}
 
-    encoded, houses = encode_one_vs_all(y)
-    model_weights = {}
+        for house in houses:
+            model_weights[house] = train(X, encoded[house])
+        
+        Path("models").mkdir(exist_ok=True)
 
-    for house in houses:
-        model_weights[house] = train(X, encoded[house])
+        np.save("models/model.npy", {
+            "weights": model_weights,
+            "mean": mean,
+            "std": std
+        })
 
-    np.save("models/model.npy", {
-        "weights": model_weights,
-        "mean": mean,
-        "std": std
-    })
+        print("Training finished successfully.")
 
-    print("Training finished successfully.")
+    except Exception as e:
+        print (f"Error: {e}")
 
 if __name__ == "__main__":
     main()

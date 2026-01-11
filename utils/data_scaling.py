@@ -1,6 +1,3 @@
-# Feature Normalization Module
-# Applies z-score normalization (standardization) to features
-
 import numpy as np
 
 def normalize(matrix, mean=None, std=None):

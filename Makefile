@@ -41,7 +41,6 @@ pairplot: venv
 
 plots: histogram scatter pairplot
 
-# Run everything
 all: install describe train predict plots
 
 help:

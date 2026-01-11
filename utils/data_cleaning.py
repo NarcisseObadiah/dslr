@@ -1,6 +1,3 @@
-# Data Cleaning Module
-# Handles feature selection and missing value imputation
-
 def prepare_features(dataframe, include_target=True):
     """
     Prepare dataset by selecting numeric features and handling missing values.

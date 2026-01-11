@@ -27,7 +27,6 @@ def mean(values):
     return total_sum / len(valid_values)
 
 
-
 def std(values):
     """Calculate standard deviation of non-NaN values"""
     valid_values = []
@@ -58,8 +57,6 @@ def min_value(values):
         if value < current_min:
             current_min = value
     return current_min
-
-
 
 def max_value(values):
     valid_values = []

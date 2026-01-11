@@ -39,7 +39,8 @@ def main():
         "Index": df["Index"],
         "Hogwarts House": predictions
     })
-
+    
+    Path("output").mkdir(exist_ok=True)
     output.to_csv("output/houses.csv", index=False)
     print("Predictions saved.")
 
