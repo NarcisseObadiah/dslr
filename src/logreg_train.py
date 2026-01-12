@@ -15,7 +15,8 @@ from utils.data_scaling import normalize
 from utils.label_encoding import encode_one_vs_all
 
 
- """Sigmoid activation function for logistic regression"""
+
+"""Sigmoid activation function for logistic regression"""
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
  
