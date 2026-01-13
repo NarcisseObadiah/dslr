@@ -1,10 +1,7 @@
-# preprocessing.py - Data preprocessing utilities
-# Combines data cleaning, scaling, and label encoding
+# Data preprocessing utilities
+#data cleaning, scaling, and label encoding combined
 
 import numpy as np
-
-
-# ============ Data Cleaning ============
 
 FEATURE_COLUMNS = [
     "Astronomy",
@@ -18,7 +15,6 @@ FEATURE_COLUMNS = [
 
 HOUSES = ['Gryffindor', 'Hufflepuff', 'Ravenclaw', 'Slytherin']
 
-
 def prepare_features(dataframe, include_target=True):
     """
     Select numeric features and fill missing values with column mean.
@@ -26,21 +22,17 @@ def prepare_features(dataframe, include_target=True):
     columns = FEATURE_COLUMNS.copy()
     if include_target:
         columns.append("Hogwarts House")
-
     cleaned = dataframe[columns].copy()
 
     for col in FEATURE_COLUMNS:
         cleaned[col] = cleaned[col].fillna(cleaned[col].mean())
-
     return cleaned
 
 
-# ============ Data Scaling ============
-
 def normalize(matrix, mean=None, std=None):
     """
-    Z-score normalization (standardization).
-    Pass mean/std from training to apply same scaling to test data.
+    Z-score normalization (standardization)
+    Pass mean/std from training to apply same scaling to test data
     """
     if mean is None:
         mean = np.mean(matrix, axis=0)
@@ -52,12 +44,10 @@ def normalize(matrix, mean=None, std=None):
     return normalized, mean, std
 
 
-# ============ Label Encoding ============
-
 def encode_one_vs_all(labels):
     """
-    Convert house labels to one-vs-all binary format.
-    Returns dict with binary arrays for each house.
+    Convert house labels to one-vs-all binary format
+    Returns dict with binary arrays for each house
     """
     encoded = {}
     for house in HOUSES:
