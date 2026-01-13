@@ -1,6 +1,6 @@
 # Custom Statistics Module
 # Implements statistical functions (count, mean, std, percentiles)
-# Handles NaN values (v == v checks for NaN)
+# Handles NaN values appropriately
 
 import math
 
@@ -17,7 +17,7 @@ def count(values):
 def mean(values):
     valid_values = []
     for value in values:
-        if value == value:  # Check for NaN
+        if value == value: 
             valid_values.append(value)
     if len(valid_values) == 0:
         return float("nan")

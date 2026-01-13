@@ -23,9 +23,6 @@ describe: venv
 train: venv
 	$(PY) src/logreg_train.py datasets/dataset_train.csv
 
-show-model: venv
-	$(PY) src/show_model.py
-
 predict: venv
 	$(PY) src/logreg_predict.py datasets/dataset_test.csv
 
