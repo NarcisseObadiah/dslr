@@ -50,8 +50,12 @@ dslr/
 ├── datasets/
 │   ├── dataset_train.csv    # Training data
 │   └── dataset_test.csv     # Test data
-├── weights.npy              # Trained model (generated)
-└── houses.csv               # Predictions (generated)
+├── output/                  # Generated outputs
+│   ├── histogram.png
+│   ├── scatter_plot.png
+│   ├── pair_plot.png
+│   └── houses.csv
+└── weights.npy              # Trained model (generated)
 ```
 
 ## Data Visualization
@@ -60,19 +64,19 @@ dslr/
 
 Shows the distribution of **"Care of Magical Creatures"** scores across all four Hogwarts houses. This feature has a homogeneous distribution, meaning it's not useful for distinguishing between houses.
 
-![Histogram](histogram.png)
+![Histogram](output/histogram.png)
 
 ### Scatter Plot
 
 Displays the relationship between **Astronomy** and **Defense Against the Dark Arts**. These two features are highly correlated (almost perfectly linear), indicating redundancy.
 
-![Scatter Plot](scatter_plot.png)
+![Scatter Plot](output/scatter_plot.png)
 
 ### Pair Plot
 
 A comprehensive view of relationships between selected features (**Astronomy**, **Charms**, **Potions**, **Flying**) colored by house. Helps identify which features best separate the classes.
 
-![Pair Plot](pair_plot.png)
+![Pair Plot](output/pair_plot.png)
 
 ## How It Works
 
@@ -93,7 +97,7 @@ A comprehensive view of relationships between selected features (**Astronomy**, 
 
 ## Output
 
-After running `make predict`, the file `houses.csv` contains:
+After running `make predict`, the file `output/houses.csv` contains:
 
 | Index | Hogwarts House |
 |-------|----------------|

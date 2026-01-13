@@ -39,7 +39,8 @@ def main():
         "Hogwarts House": predictions
     })
     
-    output.to_csv("houses.csv", index=False)
+    Path("output").mkdir(exist_ok=True)
+    output.to_csv("output/houses.csv", index=False)
     print("Predictions saved.")
 
 if __name__ == "__main__":

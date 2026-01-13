@@ -5,6 +5,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+from pathlib import Path
+
 df = pd.read_csv("datasets/dataset_train.csv")
 
 sns.scatterplot(
@@ -14,4 +16,5 @@ sns.scatterplot(
     hue="Hogwarts House"
 )
 
-plt.savefig("scatter_plot.png")
+Path("output").mkdir(exist_ok=True)
+plt.savefig("output/scatter_plot.png")

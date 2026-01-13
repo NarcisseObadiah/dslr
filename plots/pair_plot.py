@@ -5,6 +5,8 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+from pathlib import Path
+
 df = pd.read_csv("datasets/dataset_train.csv")
 
 selected = df[[
@@ -16,4 +18,5 @@ selected = df[[
 ]]
 
 sns.pairplot(selected, hue="Hogwarts House", corner=True)
-plt.savefig("pair_plot.png")
+Path("output").mkdir(exist_ok=True)
+plt.savefig("output/pair_plot.png")

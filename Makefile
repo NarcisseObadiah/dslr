@@ -15,7 +15,7 @@ install: venv
 	$(PY) -m pip install -q -r requirements.txt
 
 clean:
-	rm -rf $(VENV) weights.npy houses.csv *.png
+	rm -rf $(VENV) weights.npy output/
 
 describe: venv
 	$(PY) describe.py datasets/dataset_train.csv
