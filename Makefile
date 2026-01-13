@@ -1,6 +1,5 @@
 # DSLR Project Makefile
 # Usage: make install && make train && make predict
-
 PYTHON ?= /usr/bin/python3
 VENV   := .venv
 PY     := $(VENV)/bin/python
@@ -18,21 +17,18 @@ install: venv
 clean:
 	rm -rf $(VENV) models/*.npy output/*.png output/*.csv
 
-# Analysis
 describe: venv
 	$(PY) src/describe.py datasets/dataset_train.csv
 
-# ML Pipeline
 train: venv
 	$(PY) src/logreg_train.py datasets/dataset_train.csv
-	
+
 show-model: venv
 	$(PY) src/show_model.py
 
 predict: venv
 	$(PY) src/logreg_predict.py datasets/dataset_test.csv
 
-# Visualizations
 histogram: venv
 	$(PY) src/histogram.py
 
@@ -47,10 +43,11 @@ plots: histogram scatter pairplot
 all: install describe train predict plots
 
 help:
-	@echo "make install   - setup venv and dependencies"
-	@echo "make describe  - show dataset statistics"
-	@echo "make train     - train logistic regression model"
-	@echo "make predict   - predict houses on test data"
-	@echo "make plots     - generate all visualizations"
-	@echo "make all       - run full pipeline"
-	@echo "make clean     - remove venv and outputs"
+	@echo "make install    - setup venv and dependencies"
+	@echo "make describe   - show dataset statistics"
+	@echo "make train      - train logistic regression model"
+	@echo "make show-model - display learned model weights"
+	@echo "make predict    - predict houses on test data"
+	@echo "make plots      - generate all visualizations"
+	@echo "make all        - run full pipeline"
+	@echo "make clean      - remove venv and outputs"

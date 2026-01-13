@@ -9,8 +9,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 import numpy as np
 import pandas as pd
 
-from utils.data_cleaning import prepare_features
-from utils.data_scaling import normalize
+from utils.preprocessing import prepare_features, normalize
 
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))

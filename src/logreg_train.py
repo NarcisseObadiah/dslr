@@ -10,18 +10,12 @@ import pandas as pd
 from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from utils.data_cleaning import prepare_features
-from utils.data_scaling import normalize
-from utils.label_encoding import encode_one_vs_all
+from utils.preprocessing import prepare_features, normalize, encode_one_vs_all
 
-
-
-"""Sigmoid activation function for logistic regression"""
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
  
 def train(features, labels, learning_rate=0.1, epochs=3000):
-    """Train logistic regression model using gradient descent"""
     samples, features_count = features.shape
     weights = np.zeros(features_count)          
 
