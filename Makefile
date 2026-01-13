@@ -18,33 +18,32 @@ clean:
 	rm -rf $(VENV) models/*.npy output/*.png output/*.csv
 
 describe: venv
-	$(PY) src/describe.py datasets/dataset_train.csv
+	$(PY) describe.py datasets/dataset_train.csv
 
 train: venv
-	$(PY) src/logreg_train.py datasets/dataset_train.csv
+	$(PY) logreg/logreg_train.py datasets/dataset_train.csv
 
 predict: venv
-	$(PY) src/logreg_predict.py datasets/dataset_test.csv
+	$(PY) logreg/logreg_predict.py datasets/dataset_test.csv
 
 histogram: venv
-	$(PY) src/histogram.py
+	$(PY) plots/histogram.py
 
 scatter: venv
-	$(PY) src/scatter_plot.py
+	$(PY) plots/scatter_plot.py
 
 pairplot: venv
-	$(PY) src/pair_plot.py
+	$(PY) plots/pair_plot.py
 
 plots: histogram scatter pairplot
 
 all: install describe train predict plots
 
 help:
-	@echo "make install    - setup venv and dependencies"
-	@echo "make describe   - show dataset statistics"
-	@echo "make train      - train logistic regression model"
-	@echo "make show-model - display learned model weights"
-	@echo "make predict    - predict houses on test data"
-	@echo "make plots      - generate all visualizations"
-	@echo "make all        - run full pipeline"
-	@echo "make clean      - remove venv and outputs"
+	@echo "make install   - setup venv and dependencies"
+	@echo "make describe  - show dataset statistics"
+	@echo "make train     - train logistic regression model"
+	@echo "make predict   - predict houses on test data"
+	@echo "make plots     - generate all visualizations"
+	@echo "make all       - run full pipeline"
+	@echo "make clean     - remove venv and outputs"
