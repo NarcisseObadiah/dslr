@@ -16,4 +16,4 @@ selected = df[[
 ]]
 
 sns.pairplot(selected, hue="Hogwarts House", corner=True)
-plt.savefig("output/pair_plot.png")
+plt.savefig("pair_plot.png")

@@ -1,32 +1,108 @@
 # DSLR - Data Science and Logistic Regression
 
-A machine learning project for classifying Hogwarts Houses using student performance data.
+A machine learning project that classifies Hogwarts students into their houses using logistic regression. Built from scratch without using sklearn's logistic regression.
+
+## Overview
+
+This project implements a **one-vs-all multiclass logistic regression classifier** to predict which Hogwarts house a student belongs to based on their course grades.
+
+## Features
+
+- Custom statistical analysis tool (replicating pandas `describe()`)
+- Data visualization (histogram, scatter plot, pair plot)
+- Logistic regression with gradient descent
+- One-vs-all classification for 4 houses
+
+## Installation
+
+```bash
+make install
+```
+
+## Usage
+
+```bash
+# Run full pipeline
+make all
+
+# Or step by step:
+make describe   # Show dataset statistics
+make train      # Train the model
+make predict    # Predict on test data
+make plots      # Generate visualizations
+```
 
 ## Project Structure
 
-### `/src` - Main Analysis & ML Scripts
-- **describe.py** - Statistical analysis of dataset (count, mean, std, percentiles, min/max)
-- **histogram.py** - Visualize distribution of "Care of Magical Creatures" across houses
-- **scatter_plot.py** - Scatter plot showing relationship between Astronomy and Defense Against the Dark Arts
-- **pair_plot.py** - Multi-variable pairplot for selected features
-- **logreg_train.py** - Train logistic regression models (one-vs-all for each house)
-- **logreg_predict.py** - Make predictions on test data using trained models
+```
+dslr/
+├── describe.py              # Statistical analysis tool
+├── logreg/
+│   ├── logreg_train.py      # Training script
+│   └── logreg_predict.py    # Prediction script
+├── plots/
+│   ├── histogram.py         # Histogram visualization
+│   ├── scatter_plot.py      # Scatter plot visualization
+│   └── pair_plot.py         # Pair plot visualization
+├── utils/
+│   ├── preprocessing.py     # Data cleaning, scaling, encoding
+│   └── statistics.py        # Custom stats functions
+├── datasets/
+│   ├── dataset_train.csv    # Training data
+│   └── dataset_test.csv     # Test data
+├── weights.npy              # Trained model (generated)
+└── houses.csv               # Predictions (generated)
+```
 
-### `/utils` - Helper Functions
-- **data_cleaning.py** - Feature selection and missing value imputation
-- **data_scaling.py** - Feature normalization (z-score)
-- **label_encoding.py** - One-vs-all encoding for multi-class classification
-- **statistics.py** - Custom statistical functions (count, mean, std, percentiles)
+## Data Visualization
 
-### `/datasets` - Data Files
-- **dataset_train.csv** - Training data with student features and house labels
-- **dataset_test.csv** - Test data for predictions
+### Histogram
 
-### `/models` - Trained Models
-- **model.npy** - Saved weights from logistic regression training
+Shows the distribution of **"Care of Magical Creatures"** scores across all four Hogwarts houses. This feature has a homogeneous distribution, meaning it's not useful for distinguishing between houses.
 
-### `/output` - Results
-- **scatter_plot.png** - Scatter plot visualization
-- **histogram.png** - Histogram visualization
-- **pair_plot.png** - Pair plot visualization
-- **houses.csv** - Prediction results on test data
+![Histogram](histogram.png)
+
+### Scatter Plot
+
+Displays the relationship between **Astronomy** and **Defense Against the Dark Arts**. These two features are highly correlated (almost perfectly linear), indicating redundancy.
+
+![Scatter Plot](scatter_plot.png)
+
+### Pair Plot
+
+A comprehensive view of relationships between selected features (**Astronomy**, **Charms**, **Potions**, **Flying**) colored by house. Helps identify which features best separate the classes.
+
+![Pair Plot](pair_plot.png)
+
+## How It Works
+
+### 1. Data Preprocessing
+- Select relevant numeric features
+- Fill missing values with column mean
+- Normalize features using z-score standardization
+
+### 2. Training (One-vs-All)
+- Train 4 binary classifiers (one per house)
+- Use sigmoid activation and gradient descent
+- Save weights for prediction
+
+### 3. Prediction
+- Load trained weights
+- Compute probability for each house
+- Assign the house with highest probability
+
+## Output
+
+After running `make predict`, the file `houses.csv` contains:
+
+| Index | Hogwarts House |
+|-------|----------------|
+| 0     | Ravenclaw      |
+| 1     | Slytherin      |
+| ...   | ...            |
+
+## Clean Up
+
+```bash
+make clean  # Remove venv and generated files
+```

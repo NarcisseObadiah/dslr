@@ -12,3 +12,4 @@ __pycache__/
 output/*.png
 output/*.csv
 models/*.npy
+datasets/*.csv

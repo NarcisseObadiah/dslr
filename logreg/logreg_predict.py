@@ -19,7 +19,7 @@ def main():
         print("Usage: python logreg_predict.py dataset_test.csv")
         return
 
-    model = np.load("models/model.npy", allow_pickle=True).item()
+    model = np.load("weights.npy", allow_pickle=True).item()
 
     df = pd.read_csv(sys.argv[1])
     cleaned = prepare_features(df, include_target=False)
@@ -39,8 +39,7 @@ def main():
         "Hogwarts House": predictions
     })
     
-    Path("output").mkdir(exist_ok=True)
-    output.to_csv("output/houses.csv", index=False)
+    output.to_csv("houses.csv", index=False)
     print("Predictions saved.")
 
 if __name__ == "__main__":

@@ -14,4 +14,4 @@ sns.histplot(
     kde=True
 )
 
-plt.savefig("output/histogram.png")
+plt.savefig("histogram.png")

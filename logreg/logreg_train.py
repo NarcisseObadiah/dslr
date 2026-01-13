@@ -50,10 +50,8 @@ def main():
 
         for house in houses:
             model_weights[house] = train(X, encoded[house])
-        
-        Path("models").mkdir(exist_ok=True)
 
-        np.save("models/model.npy", {
+        np.save("weights.npy", {
             "weights": model_weights,
             "mean": mean,
             "std": std

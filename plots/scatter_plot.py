@@ -14,4 +14,4 @@ sns.scatterplot(
     hue="Hogwarts House"
 )
 
-plt.savefig("output/scatter_plot.png")
+plt.savefig("scatter_plot.png")
