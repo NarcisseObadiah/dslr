@@ -8,6 +8,9 @@ __pycache__/
 .vscode/
 .idea/
 
+# Utils generated files
+utils/__init__.py
+
 weights.npy
 
 datasets/
