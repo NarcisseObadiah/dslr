@@ -5,7 +5,6 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 import pandas as pd
 from utils.statistics import count, mean, std, min_value, max_value, percentile
 
-
 def compute_stats(values):
     """Compute all statistics for a list of values."""
     return [
